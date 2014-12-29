@@ -1,6 +1,6 @@
 // Angular Module
 PredictApp = angular.module("PredictApp", ['ngRoute']);
-PredictApp.constant("API_END_POINT","http://apps.sampathweb.com/sentiment-analy-app");
+PredictApp.constant("API_END_POINT","http://apps.sampathweb.com/sentiment-analysis/api");
 
 // Routes
 PredictApp.config(function($routeProvider) {
