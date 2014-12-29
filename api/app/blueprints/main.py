@@ -1,3 +1,5 @@
+'''Module for Error handling and messages common to the application'''
+
 from flask import Blueprint
 
 main = Blueprint('main', __name__)

@@ -4,6 +4,7 @@ from app import Base
 
 
 class Dataset(Base):
+    '''Table to hold listing of uploaded datasets'''
     __tablename__ = 'datasets'
     id = Column(Integer, primary_key=True)
     name = Column(String(50), nullable=False)

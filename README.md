@@ -1,7 +1,7 @@
 # Sentiment Analysis App
 Developed by [Ramesh Sampath](http://sampathweb.com)
 
-This application is built using Python / Flask for serving prediction API and as an Angular App for web interface.
+This application is built using Python / Flask for serving prediction API and as an Angular App for web interface.  Application has a tiny sqlite db to hold listing of datasets and the location of dataset files.
 
 The webapp is hosted at [http://apps.sampathweb.com/sentiment-analysis/app/index.html#/](http://apps.sampathweb.com/sentiment-analysis/app/index.html#/)
 

@@ -2,6 +2,7 @@ import os
 
 
 class Config(object):
+    '''Configuration settings for the Application'''
     BASE_DIR = os.path.dirname(os.path.abspath(__file__))
     MAX_CONTENT_LENGTH = 3 * 1024 * 1024
     #Upload of files

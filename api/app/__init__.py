@@ -10,6 +10,9 @@ trained_models = {}
 
 
 def create_app(config_name):
+    '''Retuns flask app object based on config settings.
+        Initializes DB and registers endpoints
+    '''
     app = Flask(__name__)
     app.config.from_object(config_name)
 
@@ -17,8 +20,9 @@ def create_app(config_name):
     db.init_app(app)
     db.Model = Base
 
-    # register our blueprints
-    from app.blueprints import datasets, predictors
+    # register API endpoints as blueprints
+    from app.blueprints import main, datasets, predictors
+    app.register_blueprint(main)
     app.register_blueprint(datasets)
     app.register_blueprint(predictors)
 

@@ -1,4 +1,9 @@
 #!/usr/bin/env python
+'''Module to manage Flask Application tasks -
+    Creating / Updating DB changes
+    Running server locally
+'''
+
 from __future__ import print_function
 import json
 from flask.ext.script import Manager, Server

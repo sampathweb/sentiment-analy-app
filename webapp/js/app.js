@@ -26,11 +26,13 @@ PredictApp.service('predictSrv', ['$http', 'API_END_POINT', function($http, API_
 
     var self = this;
 
+    // Get list of available datasets
     self.load_datasets = function(refresh) {
         var request = $http.jsonp(API_END_POINT + '/datasets/?callback=JSON_CALLBACK');
         return request.then(handleSuccess, handleError);
     };
 
+    // Upload a new dataset
     self.upload = function(new_ds) {
         var fd = new FormData();
         fd.append("name", new_ds.name);
@@ -43,6 +45,7 @@ PredictApp.service('predictSrv', ['$http', 'API_END_POINT', function($http, API_
         });
     };
 
+    // Delete dataset
     self.delete = function(ds) {
         var fd = new FormData();
         fd.append("name", ds.name);
@@ -54,6 +57,7 @@ PredictApp.service('predictSrv', ['$http', 'API_END_POINT', function($http, API_
         });
     };
 
+    // Call Prediction API
     self.predict = function(dataset, new_text) {
         var pred_result = {};
         var pred_api;
@@ -92,6 +96,7 @@ PredictApp.controller('mainCtrl', ['$scope', 'predictSrv', function($scope, pred
         $scope.datasets = data.datasets;
     });
 
+    // Call Prediction Service
     $scope.submit = function() {
         console.log($scope.new_review);
         console.log($scope.selected_ds);
@@ -104,6 +109,7 @@ PredictApp.controller('mainCtrl', ['$scope', 'predictSrv', function($scope, pred
 
 PredictApp.controller('datasetCtrl', ['$scope', 'predictSrv', function($scope, predictSrv) {
 
+    // Pull dataset list from API
     $scope.refresh_data = function() {
         predictSrv.load_datasets().then(function (data) {
             $scope.datasets = data.datasets;
@@ -116,11 +122,13 @@ PredictApp.controller('datasetCtrl', ['$scope', 'predictSrv', function($scope, p
         'Files need to be in Two Column Format with First Column containing the Target Category and Second Column with the Text'
     ];
 
+    // Resets scope variables
     $scope.initialize = function() {
         $scope.new_ds = {name: '', file: null};
         $scope.refresh_data();
     };
 
+    // Upload new dataset
     $scope.upload = function() {
         $scope.upload_messages = [];
         if ($scope.new_ds.name.length == 0) {
@@ -130,10 +138,12 @@ PredictApp.controller('datasetCtrl', ['$scope', 'predictSrv', function($scope, p
         }
     };
 
+    // Delete selected dataset, if not protected
     $scope.delete = function(ds) {
         predictSrv.delete(ds).then($scope.initialize);
     };
 
+    // Set File for Upload
     $scope.setFiles = function(element) {
         $scope.new_ds.file = element.files[0];
     };
