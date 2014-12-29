@@ -1,6 +1,7 @@
 // Angular Module
 PredictApp = angular.module("PredictApp", ['ngRoute']);
-PredictApp.constant("API_END_POINT","http://apps.sampathweb.com/sentiment-analysis/api");
+// PredictApp.constant("API_END_POINT","http://apps.sampathweb.com/sentiment-analysis/api");
+PredictApp.constant("API_END_POINT","http://127.0.0.1:5000");
 
 // Routes
 PredictApp.config(function($routeProvider) {
@@ -37,6 +38,17 @@ PredictApp.service('predictSrv', ['$http', 'API_END_POINT', function($http, API_
         console.log(fd);
 
         return $http.post(API_END_POINT + '/datasets/new/', fd, {
+            withCredentials: false,
+            headers: {'Content-Type': undefined },
+            transformRequest: angular.identity
+        });
+    };
+
+    self.delete = function(ds) {
+        var fd = new FormData();
+        fd.append("name", ds.name);
+
+        return $http.post(API_END_POINT + '/datasets/delete/', fd, {
             withCredentials: false,
             headers: {'Content-Type': undefined },
             transformRequest: angular.identity
@@ -111,7 +123,7 @@ PredictApp.controller('datasetCtrl', ['$scope', 'predictSrv', function($scope, p
     };
 
     $scope.delete = function(ds) {
-        console.log(ds);
+        predictSrv.delete(ds).then($scope.initialize);
     };
 
     $scope.setFiles = function(element) {

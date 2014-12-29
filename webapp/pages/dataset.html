@@ -13,7 +13,7 @@
         <tr ng-repeat="row in datasets">
           <td>{{row.name}}</td>
           <td>{{row.source_file}}</td>
-          <td><button ng-hide="row-protected" ng-click="delete(row)">Delete</button></td>
+          <td><button ng-hide="row.protected" ng-click="delete(row)">Delete</button></td>
         </tr>
       </tbody>
     </table>

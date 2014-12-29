@@ -40,3 +40,19 @@ def new():
         db.session.commit()
         return jsonify(success=True)
     return jsonify(success=False)
+
+
+@datasets.route('/delete/', methods=['POST'])
+@crossdomain(origin='*')
+def delete():
+    '''Delete Data'''
+    ds_name = request.form.get('name')
+    try:
+        dataset = db.session.query(Dataset).filter(Dataset.name == ds_name).one()
+    except:
+        dataset = None
+    if ds_name and dataset:
+        db.session.delete(dataset)
+        db.session.commit()
+        return jsonify(success=True)
+    return jsonify(success=False)
