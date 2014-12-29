@@ -1,0 +1,10 @@
+env/
+db/
+uploads/
+temp/
+ref/
+logs/
+*.pyc
+*.conf
+*.out
+*.pid

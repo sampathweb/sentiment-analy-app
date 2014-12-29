@@ -1,0 +1,23 @@
+{
+  "name": "movie-sentiment-app",
+  "version": "0.0.1",
+  "authors": [
+    "Ramesh Sampath <ramesh@sampathweb.com>"
+  ],
+  "description": "Predict the sentiment based on text",
+  "main": "index.html",
+  "license": "MIT",
+  "homepage": "index.html",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "skeleton": "~2.0.2",
+    "angular": "~1.3.8",
+    "angular-route": "~1.3.8"
+  }
+}

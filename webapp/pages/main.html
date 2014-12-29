@@ -1,0 +1,34 @@
+<div ng-controller="mainCtrl">
+  <div class="row">
+    <h4>Movie Review Sentiment</h4>
+    <p>This index.html page is a placeholder with the CSS, font and favicon. It's just waiting for you to add some content! If you need some help hit up the <a href="http://www.getskeleton.com">Skeleton documentation</a>.</p>
+
+    <form ng-submit="submit()">
+      <label>Select a Training Dataset
+        <select ng-model="selected_ds" ngRequired ng-options="ds.name for ds in datasets"></select>
+      </label>
+      <label>Review
+        <textarea class="u-full-width" placeholder="Enter a movie review to classify" ng-model="new_review" ngRequired></textarea>
+      </label>
+      <input class="button button-primary" type="submit" value="Predict Review">
+    </form>
+  </div>
+  <div class="row">
+    <table class="u-full-width">
+      <thead>
+        <tr>
+          <th>Dataset</th>
+          <th>Review Text</th>
+          <th>Prediction</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="result in pred_results">
+          <td>{{result.dataset}}</td>
+          <td>{{result.text}}</td>
+          <td>{{result.predicted_cat}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

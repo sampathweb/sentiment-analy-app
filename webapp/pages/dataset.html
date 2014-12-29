@@ -1,0 +1,38 @@
+<div ng-controller="datasetCtrl">
+  <!-- List Available Datasets for use -->
+  <div class="row">
+    <table class="u-full-width">
+      <thead>
+        <tr>
+          <th>Dataset Name</th>
+          <th>Uploaded File</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="row in datasets">
+          <td>{{row.name}}</td>
+          <td>{{row.source_file}}</td>
+          <td><button ng-hide="row-protected" ng-click="delete(row)">Delete</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <!-- Upload new Dataset Form -->
+  <form ng-submit="upload()">
+    <div class="row">
+      <div class="four columns">
+        <label>Dataset Name</label>
+          <input type="text" ng-model="new_ds.name" ngRequired placeholder="Enter Dataset Name" />
+      </div>
+      <div class="four columns">
+        <label>Choose File</label>
+          <input type="file" ng-model="new_ds.filename" ngRequired onchange="angular.element(this).scope().setFiles(this)" />
+      </div>
+      <div class="four columns">
+        <label></label>
+        <input class="button-primary" type="submit" value="Add">
+      </div>
+    </div>
+  </form>
+</div>
