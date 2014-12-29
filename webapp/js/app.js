@@ -1,6 +1,6 @@
 // Angular Module
 PredictApp = angular.module("PredictApp", ['ngRoute']);
-PredictApp.constant("API_END_POINT","http://127.0.0.1:5000");
+PredictApp.constant("API_END_POINT","http://apps.sampathweb.com/sentiment-analy-app");
 
 // Routes
 PredictApp.config(function($routeProvider) {
