@@ -17,10 +17,3 @@ def predict():
     else:
         data['predicted_cat'] = None
     return jsonify(predicted=data)
-
-
-# @text_models.route('/score/')
-# def score():
-#     test_filename = data_uri + 'movie-reviews-test.tsv'
-#     test_score = nb_clf.score(test_filename)
-#     return jsonify(score=test_score)

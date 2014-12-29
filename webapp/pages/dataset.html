@@ -23,16 +23,23 @@
     <div class="row">
       <div class="four columns">
         <label>Dataset Name</label>
-          <input type="text" ng-model="new_ds.name" ngRequired placeholder="Enter Dataset Name" />
+          <input type="text" ng-model="new_ds.name" placeholder="Enter Dataset Name" />
       </div>
       <div class="four columns">
         <label>Choose File</label>
-          <input type="file" ng-model="new_ds.filename" ngRequired onchange="angular.element(this).scope().setFiles(this)" />
+          <input type="file" ng-model="new_ds.filename" onchange="angular.element(this).scope().setFiles(this)" />
       </div>
       <div class="four columns">
         <label></label>
         <input class="button-primary" type="submit" value="Add">
       </div>
+    </div>
+    <div class="row">
+      <ul>
+        <li ng-repeat="msg in messages">
+          {{msg}}
+        </li>
+      </ul>
     </div>
   </form>
 </div>

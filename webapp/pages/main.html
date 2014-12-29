@@ -1,17 +1,17 @@
 <div ng-controller="mainCtrl">
   <div class="row">
-    <h4>Movie Review Sentiment</h4>
-    <p>Select a Dataset to run Sentiment Analysis.  Then, enter a text and the NaiveBayes classifier will do the prediction for you.  It's a simple classifier based on Bag of Words.  It currently does not do n-gram analysis or stemming.
+    <h4>Sentiment Analysis</h4>
+    <p>Select a Dataset to use for training.  Then, enter a text and the NaiveBayes classifier will do the prediction for you.  It's a simple classifier based on Bag of Words.  It currently does not do n-gram analysis or stemming.
     You can also upload new Datasets from the datasets tab on the menu.</p>
 
     <form ng-submit="submit()">
       <label>Select a Training Dataset
-        <select ng-model="selected_ds" ngRequired ng-options="ds.name for ds in datasets"></select>
+        <select ng-model="selected_ds" ngRequired ng-options="ds.name for ds in datasets"></select> Accuracy: {{selected_ds.test_score | number:2}}
       </label>
-      <label>Review
+      <label>Text
         <textarea class="u-full-width" placeholder="Enter a movie review to classify" ng-model="new_review" ngRequired></textarea>
       </label>
-      <input class="button button-primary" type="submit" value="Predict Review">
+      <input class="button button-primary" type="submit" value="Predict Sentiment">
     </form>
   </div>
   <div class="row">
@@ -19,7 +19,7 @@
       <thead>
         <tr>
           <th>Dataset</th>
-          <th>Review Text</th>
+          <th>Text</th>
           <th>Prediction</th>
         </tr>
       </thead>

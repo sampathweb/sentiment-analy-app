@@ -36,7 +36,6 @@ PredictApp.service('predictSrv', ['$http', 'API_END_POINT', function($http, API_
         fd.append("name", new_ds.name);
         fd.append("file", new_ds.file);
         console.log(fd);
-
         return $http.post(API_END_POINT + '/datasets/new/', fd, {
             withCredentials: false,
             headers: {'Content-Type': undefined },
@@ -70,12 +69,11 @@ PredictApp.service('predictSrv', ['$http', 'API_END_POINT', function($http, API_
         return request.then(handleSuccess, handleError);
     };
 
-    // Transform the successful response, unwrapping the application data
+    // Transform the successful and error responses
     function handleError(response) {
         console.log(response);
         return(response.data);
     }
-    // Transform the successful response, unwrapping the application data
     function handleSuccess(response) {
         return(response.data);
     }
@@ -112,14 +110,24 @@ PredictApp.controller('datasetCtrl', ['$scope', 'predictSrv', function($scope, p
         });
     };
 
+    $scope.messages = [
+        'Uploaded Files need to be less than 3MB.',
+        'Files need to be with extension txt, csv or tsv',
+        'Files need to be in Two Column Format with First Column containing the Target Category and Second Column with the Text'
+    ];
+
     $scope.initialize = function() {
         $scope.new_ds = {name: '', file: null};
         $scope.refresh_data();
     };
 
     $scope.upload = function() {
-        predictSrv.upload($scope.new_ds).then($scope.initialize);
-
+        $scope.upload_messages = [];
+        if ($scope.new_ds.name.length == 0) {
+            alert('Dataset Name cannot be empty.  Please enter a dataset name and then click Add');
+        } else {
+            predictSrv.upload($scope.new_ds).then($scope.initialize);
+        }
     };
 
     $scope.delete = function(ds) {

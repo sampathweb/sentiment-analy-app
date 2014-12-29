@@ -17,7 +17,7 @@ def allowed_file(filename):
 @jsonp
 def index():
     data = db.session.query(Dataset).all()
-    cols = ['name', 'source_file', 'protected']
+    cols = ['name', 'source_file', 'protected', 'test_score']
     data = [{col: getattr(d, col) for col in cols} for d in data]
     return jsonify(datasets=data)
 
@@ -27,12 +27,13 @@ def index():
 def new():
     '''Add to Training Data'''
     file = request.files.get('file')
-    if file and allowed_file(file.filename):
+    ds_name = request.form.get('name')
+    if ds_name and file and allowed_file(file.filename):
         filename = secure_filename(file.filename)
         with open(current_app.config['DATA_DIR'] + filename, 'wb') as f_out:
             f_out.write(file.read())
         dataset = Dataset()
-        dataset.name = request.form.get('name')
+        dataset.name = ds_name
         dataset.source_file = filename
         # Split the Files into Train and Test
         dataset.train_file, dataset.test_file = cv.train_test_split(current_app.config['DATA_DIR'], filename)
