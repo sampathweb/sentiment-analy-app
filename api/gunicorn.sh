@@ -1,7 +1,7 @@
 #!/bin/bash
 
-NAME="review-sentiment"
-FLASKDIR=/home/sampathweb/projects/review-sentiment/api
+NAME="sentiment-analy-app"
+# FLASKDIR=/home/sampathweb/projects/review-sentiment/api
 SOCKFILE=/home/sampathweb/sock
 USER=sampathweb
 GROUP=sampathweb
@@ -12,7 +12,7 @@ echo "Starting $NAME"
 # activate the virtualenv
 source /home/sampathweb/miniconda/bin/activate apps27
 
-export PYTHONPATH=$FLASKDIR:$PYTHONPATH
+# export PYTHONPATH=$FLASKDIR:$PYTHONPATH
 
 # Start your unicorn
 exec gunicorn run:application -b 127.0.0.1:8002 \
