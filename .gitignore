@@ -4,6 +4,7 @@ uploads/
 temp/
 ref/
 logs/
+pickle/
 *.pyc
 *.conf
 *.out

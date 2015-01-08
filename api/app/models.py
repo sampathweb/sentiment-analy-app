@@ -12,6 +12,8 @@ class Dataset(Base):
     train_file = Column(String(100), nullable=True)
     test_file = Column(String(100), nullable=True)
     protected = Column(Boolean, default=False)
+    mm_model_id = Column(Integer, default=0)
     test_score = Column(Float(precision=2))
+    lr_pickle_file = Column(String(100), nullable=True)
     created = Column(DateTime, default=datetime.now)
     modified = Column(DateTime, default=datetime.now, onupdate=datetime.now)

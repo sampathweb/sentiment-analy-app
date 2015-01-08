@@ -27,7 +27,9 @@
         <tr ng-repeat="result in pred_results">
           <td>{{result.dataset}}</td>
           <td>{{result.text}}</td>
-          <td>{{result.predicted_cat}}</td>
+          <td>
+            <ul><li ng-repeat="model in result.models">{{model.model_name}} - {{model.prediction}}</li></ul>
+          </td>
         </tr>
       </tbody>
     </table>

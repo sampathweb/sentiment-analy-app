@@ -7,3 +7,6 @@ SQLAlchemy==0.9.8
 Werkzeug==0.9.6
 itsdangerous==0.24
 wsgiref==0.1.2
+numpy==1.9.1
+scipy==0.14.1
+requests==2.5.1

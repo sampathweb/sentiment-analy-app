@@ -5,7 +5,7 @@ from werkzeug import secure_filename
 
 from app import db
 from app.models import Dataset
-from app.decorators import jsonp
+from app.decorators import crossdomain, jsonp
 from app.classifiers import cross_validation as cv
 
 datasets = Blueprint('datasets', __name__, url_prefix='/datasets')
@@ -27,6 +27,7 @@ def index():
 
 
 @datasets.route('/new/', methods=['POST'])
+@crossdomain(origin='*')
 def new():
     '''Adds the new dataset provided and splits the file into train / test and makes it ready for modelling'''
     file = request.files.get('file')
@@ -47,6 +48,7 @@ def new():
 
 
 @datasets.route('/delete/', methods=['POST'])
+@crossdomain(origin='*')
 def delete():
     '''Deletes the dataset from table.  Currently does not purge files.  it needs to be added'''
     ds_name = request.form.get('name')

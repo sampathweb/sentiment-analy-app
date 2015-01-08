@@ -3,7 +3,7 @@ import re
 from collections import defaultdict
 
 
-class BagWords(object):
+class NaiveBayes(object):
 
     def __init__(self):
         '''Initializes feature and target counts'''
@@ -44,12 +44,6 @@ class BagWords(object):
         if self.doc_count:
             return self.cat_counts.get(cat, 0) / self.doc_count
         return 0
-
-
-class NaiveBayes(BagWords):
-
-    def __init__(self):
-        BagWords.__init__(self)
 
     def predict(self, item):
         probs = {}
